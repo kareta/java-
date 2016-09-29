@@ -9,10 +9,11 @@ public class StringOperation {
         final String consonants = "BbCcDdFfGgHhJjKkLlMmNnPpQqRrSsTtVvXxZzWwYy";
 
         int wordStart = 0;
-        while (wordStart < buffer.length()) {
-            int wordEnd = wordStart;
+        int wordEnd = 0;
 
-            if (Character.isLetter(buffer.charAt(wordEnd))) {
+        while (wordStart < buffer.length()) {
+            wordEnd = wordStart;
+            if (Character.isLetter(buffer.charAt(wordStart))) {
                 while (wordEnd < buffer.length() && Character.isLetter(buffer.charAt(wordEnd))) {
                     wordEnd++;
                 }
@@ -21,10 +22,11 @@ public class StringOperation {
                 boolean firstIsConsonant = consonants.contains(Character.toString(buffer.charAt(wordStart)));
                 if (rightLength && firstIsConsonant) {
                     buffer.delete(wordStart, wordEnd);
+                    //wordEnd = wordStart;
                 }
             }
-            wordStart = wordEnd;
             wordStart++;
+            //System.out.println(buffer.length());
         }
 
         return buffer.toString();
