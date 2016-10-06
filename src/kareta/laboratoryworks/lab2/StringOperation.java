@@ -17,7 +17,8 @@ public class StringOperation {
                 }
 
                 boolean rightLength = (wordEnd - wordStart) == checkedLength;
-                boolean firstIsConsonant = consonants.contains(Character.toString(buffer.charAt(wordStart)));
+                boolean firstIsConsonant =
+                        consonants.contains(Character.toString(buffer.charAt(wordStart)));
                 if (rightLength && firstIsConsonant) {
                     buffer.delete(wordStart, wordEnd);
                     wordStart = wordEnd - checkedLength;

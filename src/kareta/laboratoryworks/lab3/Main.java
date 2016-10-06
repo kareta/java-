@@ -1,6 +1,5 @@
 package kareta.laboratoryworks.lab3;
 
-
 public class Main {
     public static void main(String[] args) {
         Archive collegeArchive = new Archive();
@@ -17,6 +16,7 @@ public class Main {
 
         oleg.evaluate(mathematics, masha, Mark.EXCELLENT);
         vasiliy.evaluate(mathematics, tanya, Mark.SATISFACTORY);
-        System.out.println(mathematics.toString());
+        vasiliy.evaluate(mathematics, masha, Mark.GOOD);
+        System.out.println(mathematics);
     }
 }

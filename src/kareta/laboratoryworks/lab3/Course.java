@@ -8,6 +8,7 @@ public class Course {
     private CourseMarksSheet sheet;
 
     public Course(Teacher teacher, String title, Archive archive) {
+        this.title = title;
         this.teacher = teacher;
         this.teacher.addCourse(this);
         this.sheet = new CourseMarksSheet(teacher, title);
@@ -27,12 +28,19 @@ public class Course {
     }
 
     public String getTitle() {
-        return title;
+        return sheet.getCourseTitle();
     }
 
     public void setTitle(String title) {
         sheet.setCourseTitle(title);
-        this.title = title;
+    }
+
+    public Teacher getTeacher() {
+        return sheet.getTeacher();
+    }
+
+    public void setTeacher(Teacher teacher) {
+        sheet.setTeacher(teacher);
     }
 
     public String toString() {

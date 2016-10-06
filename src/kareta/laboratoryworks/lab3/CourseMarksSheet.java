@@ -20,7 +20,6 @@ public class CourseMarksSheet {
         this.courseTitle = courseTitle;
     }
 
-
     public String getCourseTitle() {
         return courseTitle;
     }

@@ -15,7 +15,7 @@ public class Teacher extends Person {
 
     public void announce(Course course) {
         if (courses.contains(course)) {
-            System.out.println("I invite you to " + course.toString() + " course!");
+            System.out.println("I invite you to " + course.getTitle() + " course!");
         }
     }
 
