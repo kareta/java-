@@ -4,13 +4,13 @@ public class Address {
     private String country;
     private String city;
     private String street;
-    private String buiding;
+    private String building;
 
     public Address(String country, String city, String street, String buiding) {
         this.country = country;
         this.city = city;
         this.street = street;
-        this.buiding = buiding;
+        this.building = buiding;
     }
 
     public String getCountry() {
@@ -37,12 +37,12 @@ public class Address {
         this.street = street;
     }
 
-    public String getBuiding() {
-        return buiding;
+    public String getBuilding() {
+        return building;
     }
 
-    public void setBuiding(String buiding) {
-        this.buiding = buiding;
+    public void setBuilding(String building) {
+        this.building = building;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Address {
                 "country " + getCountry() +
                 ", city " + getCity() +
                 ", street " + getStreet() +
-                ", buiding " + getBuiding() +
+                ", building " + getBuilding() +
                 '}';
     }
 }
