@@ -44,4 +44,15 @@ public class Subscriber extends Person {
     public void addIntercityTalkSeconds(long intercityTalkSeconds) {
         this.intercityTalkSeconds += intercityTalkSeconds;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name " + getName() +
+                ", surname " + getSurname() +
+                ", " + getAddress() +
+                ", cityTalkSeconds " + getCityTalkSeconds() +
+                ", intercityTalkSeconds " + getIntercityTalkSeconds() +
+                "}";
+    }
 }
