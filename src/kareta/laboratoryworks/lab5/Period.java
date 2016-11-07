@@ -36,4 +36,9 @@ public class Period implements Comparable<Period> {
         }
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "begin " + begin.getYear() + " end " + end.getYear();
+    }
 }
