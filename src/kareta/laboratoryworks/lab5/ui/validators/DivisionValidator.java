@@ -1,12 +1,16 @@
 package kareta.laboratoryworks.lab5.ui.validators;
 
+import javafx.scene.input.DataFormat;
 import kareta.consoleui.Validator;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class DivisionValidator implements Validator {
-    public static final int FIELDS_NUMBER = 3;
+    public static final int FIELDS_NUMBER = 4;
     public static final String NAME_PATTERN = "[A-Za-z]{2,50}";
 
     public ArrayList<String> dataIsCorrect(String data) {
@@ -18,21 +22,29 @@ public class DivisionValidator implements Validator {
             return errors;
         }
 
-        String name = splittedData[0];
-        if (!name.matches(NAME_PATTERN)) {
-            errors.add("Name is incorrect");
+        String continentName = splittedData[0];
+        if (!continentName.matches(NAME_PATTERN)) {
+            errors.add("Continent is incorrect");
         }
+
+        String divisionName = splittedData[0];
+        if (!continentName.matches(NAME_PATTERN)) {
+            errors.add("Division name is incorrect");
+        }
+
+        DateFormat format =
+                new SimpleDateFormat("y.m.d", Locale.ENGLISH);
 
         Date begin = null;
         try {
-            begin = new Date(splittedData[1]);
+            begin = format.parse(splittedData[1]);
         } catch (Exception e) {
             errors.add("Begin date is incorrect");
         }
 
         Date end = null;
         try {
-            end = new Date(splittedData[2]);
+            end = format.parse(splittedData[2]);
         } catch (Exception e) {
             errors.add("End date is incorrect");
         }

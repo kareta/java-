@@ -27,6 +27,15 @@ public class Continent {
         history.sort(divisionComparator);
     }
 
+    public TerritorialDivision getDivision(String name) {
+        for (TerritorialDivision territorialDevision : history) {
+            if (territorialDevision.getName() == name) {
+                return territorialDevision;
+            }
+        }
+        return null;
+    }
+
     public void addCountry(String name, Country country) {
         for (TerritorialDivision territorialDevision : history) {
             if (territorialDevision.getName() == name) {

@@ -7,6 +7,10 @@ import java.util.Date;
  */
 public class Main {
     public static void main(String[] args) {
+
+        MainController mainController = new MainController();
+        mainController.run();
+
 //        Country naziGermany = new Country("NAZI GERMANY");
 //        Country ussr = new Country("USSR");
 //        Country russianEmpire = new Country("Russian Empire");
