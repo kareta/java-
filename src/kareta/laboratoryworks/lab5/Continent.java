@@ -29,7 +29,7 @@ public class Continent {
 
     public TerritorialDivision getDivision(String name) {
         for (TerritorialDivision territorialDevision : history) {
-            if (territorialDevision.getName() == name) {
+            if (territorialDevision.getName().equals(name)) {
                 return territorialDevision;
             }
         }
@@ -38,7 +38,7 @@ public class Continent {
 
     public void addCountry(String name, Country country) {
         for (TerritorialDivision territorialDevision : history) {
-            if (territorialDevision.getName() == name) {
+            if (territorialDevision.getName().equals(name)) {
                 territorialDevision.addCountry(country);
             }
         }

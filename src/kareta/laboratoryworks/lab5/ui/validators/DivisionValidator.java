@@ -27,24 +27,24 @@ public class DivisionValidator implements Validator {
             errors.add("Continent is incorrect");
         }
 
-        String divisionName = splittedData[0];
+        String divisionName = splittedData[1];
         if (!continentName.matches(NAME_PATTERN)) {
             errors.add("Division name is incorrect");
         }
 
         DateFormat format =
-                new SimpleDateFormat("y.m.d", Locale.ENGLISH);
+                new SimpleDateFormat("yyyy/mm/dd");
 
         Date begin = null;
         try {
-            begin = format.parse(splittedData[1]);
+            begin = format.parse(splittedData[2]);
         } catch (Exception e) {
             errors.add("Begin date is incorrect");
         }
 
         Date end = null;
         try {
-            end = format.parse(splittedData[2]);
+            end = format.parse(splittedData[3]);
         } catch (Exception e) {
             errors.add("End date is incorrect");
         }

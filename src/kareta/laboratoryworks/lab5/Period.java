@@ -1,5 +1,7 @@
 package kareta.laboratoryworks.lab5;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Period implements Comparable<Period> {
@@ -39,6 +41,7 @@ public class Period implements Comparable<Period> {
 
     @Override
     public String toString() {
-        return "begin " + begin.getYear() + " end " + end.getYear();
+        DateFormat format = new SimpleDateFormat("yyyy/mm/dd");
+        return "begin " + format.format(begin) + " end " + format.format(end);
     }
 }

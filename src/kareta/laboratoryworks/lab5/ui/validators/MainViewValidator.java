@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class MainViewValidator implements Validator {
 
-    public static final String CHOICE_PATTERN = "^[1-6]$";
+    public static final String CHOICE_PATTERN = "^[1-8]$";
 
     @Override
     public ArrayList<String> dataIsCorrect(String data) {

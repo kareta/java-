@@ -23,8 +23,8 @@ public class AddDivisionView implements View {
         StringBuilder builder = new StringBuilder();
         builder.append("Input division in the format:\n");
         builder.append("<Continent-name> <Division-name>");
-        builder.append(" <Begin-date YYYY:MM:DD>");
-        builder.append(" <End-date YYYY:MM:DD>\n");
+        builder.append(" <Begin-date YYYY/MM/DD>");
+        builder.append(" <End-date YYYY/MM/DD>\n");
         return builder.toString();
     }
 }

@@ -5,9 +5,12 @@ import kareta.consoleui.ViewRenderer;
 import kareta.laboratoryworks.lab5.ui.views.*;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 
 public class MainController extends Controller {
@@ -38,16 +41,42 @@ public class MainController extends Controller {
                 allContinents();
                 break;
             case "5":
-                addTerritorialDivisionCountry();
+                allCountries();
                 break;
             case "6":
-                //allDivisions();
+                addTerritorialDivisionCountry();
                 break;
             case "7":
+                findTerritorialDivisions();
+                break;
+            case "8":
                 exit = true;
                 break;
         }
         return exit;
+    }
+
+    private void findTerritorialDivisions() {
+
+        try {
+            String countryName = viewRenderer.run(new FindTerritorialDivisionView());
+            Country country = countries.get(countryName);
+            StringBuilder builder = new StringBuilder();
+            if (country == null) {
+                return;
+            }
+            for (Continent.TerritorialDivision division : country.getDivisions()) {
+                if (division != null) {
+                    builder.append(division.toString());
+                }
+
+            }
+            builder.append("\n");
+            viewRenderer.run(new FoundDivisionsView(builder.toString()));
+        } catch (IOException e) {
+            //write to logger
+            e.printStackTrace();
+        }
     }
 
     public void addContinent() {
@@ -55,7 +84,8 @@ public class MainController extends Controller {
             String continentName = viewRenderer.run(new AddContinentView());
             continents.put(continentName, new Continent(continentName));
         } catch (Exception e) {
-
+            //write to logger
+            e.printStackTrace();
         }
 
     }
@@ -65,7 +95,8 @@ public class MainController extends Controller {
             String countryName = viewRenderer.run(new AddCountryView());
             countries.put(countryName, new Country(countryName));
         } catch (Exception e) {
-
+            //write to logger
+            e.printStackTrace();
         }
     }
 
@@ -77,12 +108,19 @@ public class MainController extends Controller {
                 String continentName = splittedResult[0];
                 Continent continent = continents.get(continentName);
                 String divisionName = splittedResult[1];
-                Date beginDate = new Date(splittedResult[2]);
-                Date endDate = new Date(splittedResult[3]);
-                continent.addTeritorialDivision(divisionName, beginDate, endDate);
+
+                DateFormat format =
+                        new SimpleDateFormat("yyyy/mm/dd");
+
+                Date begin = format.parse(splittedResult[2]);
+                Date end = format.parse(splittedResult[3]);
+
+                continent.addTeritorialDivision(divisionName, begin, end);
+                continent.toString();
             }
         } catch (Exception e) {
-
+            //write to logger
+            e.printStackTrace();
         }
     }
 
@@ -95,6 +133,21 @@ public class MainController extends Controller {
         try {
             viewRenderer.run(new AllContinentsView(builder.toString()));
         } catch (IOException e) {
+            //write to logger
+            e.printStackTrace();
+        }
+    }
+
+    public void allCountries() {
+        StringBuilder builder = new StringBuilder();
+        for (Country country : countries.values()) {
+            builder.append("\n" + country.toString());
+        }
+
+        try {
+            viewRenderer.run(new AllCountriesView(builder.toString()));
+        } catch (IOException e) {
+            //write to logger
             e.printStackTrace();
         }
     }
@@ -107,14 +160,14 @@ public class MainController extends Controller {
                 String continentName = splittedResult[0];
                 Continent continent = continents.get(continentName);
                 String divisionName = splittedResult[1];
-                Continent.TerritorialDivision division = continent.getDivision(divisionName);
                 String countryName = splittedResult[2];
                 Country country = countries.get(countryName);
-                division.addCountry(country);
+                continent.addCountry(divisionName, country);
             }
 
         } catch (Exception e) {
-
+            //write to logger
+            e.printStackTrace();
         }
     }
 }

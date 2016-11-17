@@ -27,7 +27,9 @@ public class MainView implements View{
         builder.append("3. Add Division\n");
         builder.append("4. All Continents\n");
         builder.append("5. All Countries\n");
-        builder.append("6. All Divisions\n");
+        builder.append("6. Add country to division\n");
+        builder.append("7. Find territorial divisions of a country\n");
+        builder.append("8. Exit\n");
         builder.append("Type choice:\n");
         return builder.toString();
     }

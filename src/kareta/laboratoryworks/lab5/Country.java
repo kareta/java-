@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Country {
     private String name;
-    private ArrayList<Continent.TerritorialDivision> divisions;
+    private ArrayList<Continent.TerritorialDivision> divisions = new ArrayList<>();
 
     public Country(String name) {
         this.name = name;
@@ -16,6 +16,10 @@ public class Country {
 
     public void addTerritorialDivision(Continent.TerritorialDivision division) {
         divisions.add(division);
+    }
+
+    public ArrayList<Continent.TerritorialDivision> getDivisions() {
+        return divisions;
     }
 
     public String getName() {
