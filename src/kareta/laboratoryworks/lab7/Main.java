@@ -10,30 +10,22 @@ public class Main {
         String sourcePath  = console.next();
         String destinationPath  = console.next();
 
-        FileInputStream in = null;
-        FileOutputStream out = null;
+        Scanner in = null;
+        BufferedWriter out = null;
 
         try {
-            in = new FileInputStream(sourcePath);
-            out = new FileOutputStream(destinationPath);
+            in = new Scanner(new FileInputStream(sourcePath));
+            out = new BufferedWriter(new FileWriter(destinationPath));
 
-            int c;
-            while ((c = in.read()) != -1) {
-                out.write(c);
+            while (in.hasNextInt()) {
+                int number = in.nextInt();
+                System.out.println(number);
             }
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("Incorrect path");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
             if (out != null) {
                 try {
                     out.close();
