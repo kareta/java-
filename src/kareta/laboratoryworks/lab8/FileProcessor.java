@@ -10,18 +10,18 @@ import java.util.List;
 
 public class FileProcessor implements Runnable {
 
-    private String baseDirectory;
-    private File file;
+    private File sourceFile;
+    private File destFile;
 
-    public FileProcessor(String baseDirectory, File file) {
-        this.baseDirectory = baseDirectory;
-        this.file = file;
+    public FileProcessor(File sourceFile, File destFile) {
+        this.sourceFile = sourceFile;
+        this.destFile = destFile;
     }
 
     @Override
     public void run() {
-        Path path = Paths.get(file.getPath());
-        Path newFilePath = Paths.get(combine(baseDirectory, file.getName()));
+        Path path = Paths.get(sourceFile.getPath());
+        Path newFilePath = Paths.get(destFile.getPath());
         try {
             List<String> lines = Files.readAllLines(path);
             try (BufferedWriter writer = Files.newBufferedWriter(newFilePath)) {
@@ -42,4 +42,6 @@ public class FileProcessor implements Runnable {
         File file2 = new File(file1, path2);
         return file2.getPath();
     }
+
+
 }
