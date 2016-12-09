@@ -22,18 +22,20 @@ public class MatrixTransposer {
             transposedMatrix[i] = new int[matrix.length];
         }
 
-
         for (int i = 0; i < transposedMatrix.length; i++) {
             for (int j = 0; j < transposedMatrix[0].length; j++) {
                 transposedMatrix[i][j] = matrix[j][i];
             }
         }
 
-
         return transposedMatrix;
     }
 
     public void print(int[][] matrix) {
+        if (matrix == null) {
+            return;
+        }
+
         for (int[] row : matrix) {
             for (int element : row) {
                 System.out.print(element + " ");

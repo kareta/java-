@@ -14,7 +14,6 @@ public class Main {
 
     public static void handleExceptions() {
         Scanner in = null;
-        BufferedWriter out = null;
 
         try {
             Scanner console = new Scanner(System.in);
@@ -22,52 +21,30 @@ public class Main {
             String sourcePath  = console.next();
             String destinationPath  = console.next();
 
-            in = new Scanner(new FileInputStream(sourcePath));
-            out = new BufferedWriter(new FileWriter(destinationPath));
-            run(in, out);
+            File sourceFile = new File(sourcePath);
+            File destFile = new File(destinationPath);
+            run(sourceFile, destFile);
         } catch (FileNotFoundException e) {
             System.out.println("Incorrect path");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.printf("IO error happened");
         } finally {
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            if (in != null) {
+                in.close();
             }
         }
     }
 
-    public static void run(Scanner in, BufferedWriter out) throws IOException {
-
-        int rowsAmount = in.nextInt();
-        int columnsAmount = in.nextInt();
-
+    public static void run(File in, File out) throws IOException {
+        MatrixIO matrixIO = new MatrixIO();
         MatrixTransposer transposer = new MatrixTransposer();
-        int[][] matrix = transposer.getEmptyMatrix(rowsAmount, columnsAmount);
 
-        for (int i = 0; i < rowsAmount; i++) {
-            for (int j = 0; j < columnsAmount; j++) {
-                if (in.hasNextInt()) {
-                    matrix[i][j] = in.nextInt();
-                }
-            }
-        }
+        int[][] matrix = matrixIO.getMatrix(in);
 
         transposer.print(matrix);
         matrix = transposer.transpose(matrix);
         System.out.println();
         transposer.print(matrix);
-
-        out.write(rowsAmount + " " + columnsAmount + "\n");
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                out.write(matrix[i][j] + " ");
-            }
-            out.newLine();
-        }
+        matrixIO.putMatrix(matrix, out);
     }
 }
