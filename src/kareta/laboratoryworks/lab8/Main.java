@@ -28,7 +28,7 @@ public class Main {
         try {
             copyDirectory(sourceFolder, destFolder);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error while processing files");
         }
     }
 
@@ -36,9 +36,10 @@ public class Main {
         if (sourceLocation.isDirectory()) {
             copyDirectory(sourceLocation, targetLocation);
         } else if (sourceLocation.isFile() && isJavaFile(sourceLocation.getName())) {
-                FileProcessor fileProcessor = new FileProcessor(sourceLocation, targetLocation);
-                Thread thread = new Thread(fileProcessor);
-                thread.start();
+            FileProcessor fileProcessor = new FileProcessor(sourceLocation, targetLocation);
+            System.out.println(sourceLocation.getPath());
+            Thread thread = new Thread(fileProcessor);
+            thread.start();
         }
     }
 
@@ -47,8 +48,8 @@ public class Main {
             target.mkdir();
         }
 
-        for (String f : source.list()) {
-            copy(new File(source, f), new File(target, f));
+        for (String file : source.list()) {
+            copy(new File(source, file), new File(target, file));
         }
     }
 
