@@ -1,10 +1,10 @@
-package kareta.laboratoryworks.lab5.ui.views;
+package kareta.hometask.ui.views;
 
 import kareta.consoleui.Validator;
 import kareta.consoleui.View;
-import kareta.laboratoryworks.lab5.ui.validators.CountryValidator;
+import kareta.hometask.ui.validators.AddFlightValidator;
 
-public class AddCountryView implements View {
+public class AddFlightView implements View {
     @Override
     public String getName() {
         return "Add country view";
@@ -12,13 +12,13 @@ public class AddCountryView implements View {
 
     @Override
     public Validator getValidator() {
-        return new CountryValidator();
+        return new AddFlightValidator();
     }
 
     @Override
     public String getOutput() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Input country in the format:");
+        builder.append("Input country flight:");
         builder.append("<Country-name>");
         return builder.toString();
     }
